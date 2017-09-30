@@ -37,6 +37,7 @@ namespace NeteaseBirthdayAlbum
 
         public int Index { get; set; }
         public int EndIndex { get; set; }
+
         private Task fetchJob;
         private HttpClient client;
 
@@ -141,6 +142,16 @@ namespace NeteaseBirthdayAlbum
                         var id = json["id"].Value<int>();
                         onFetched?.Invoke(albumName, albumArtist, pubDate, id);
                     }
+                    else
+                    {
+                        onFailed?.Invoke(Index);
+                        //Console.WriteLine("Failed to read json :" + jsontxt);
+                    }
+                }
+                else
+                {
+                    onFailed?.Invoke(Index);
+                    Console.WriteLine("Failed to read page " + Index + "  " + result);
                 }
                 token.WaitHandle.WaitOne(150);
                 if (token.IsCancellationRequested)
@@ -177,6 +188,7 @@ namespace NeteaseBirthdayAlbum
         }
 
         public Action<string, string, DateTime,int> onFetched = null;
+        public Action<int> onFailed = null;
     }
 
 
