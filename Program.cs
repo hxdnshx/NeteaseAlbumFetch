@@ -13,6 +13,9 @@ using System.Threading;
 using SQLite;
 using Mono.Options;
 using Newtonsoft.Json.Linq;
+using SQLite.Net;
+using SQLite.Net.Attributes;
+using SQLite.Net.Platform.Generic;
 
 namespace NeteaseBirthdayAlbum
 {
@@ -194,7 +197,7 @@ namespace NeteaseBirthdayAlbum
                 {"d", "display debug message", v => isDebug = true },
                 {"f=","Save results to a file", v =>
                 {
-                    var conn = new SQLiteConnection(v);
+                    var conn = new SQLiteConnection(new SQLitePlatformGeneric(),v);
                     conn.CreateTable<DataItem>();
                     if(conn.ExecuteScalar<int>("select count(*) from DataItem")>0)
                         startIndex = Math.Max(startIndex, conn.ExecuteScalar<int>("select max(ID) from DataItem")+1);
