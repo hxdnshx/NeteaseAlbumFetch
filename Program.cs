@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.Runtime.Remoting.Channels;
-using System.Xml.Linq;
-using Mono.Options;
 using System.Security.Cryptography;
-using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
-using HtmlAgilityPack;
 using SQLite;
+using Mono.Options;
+using Newtonsoft.Json.Linq;
 
 namespace NeteaseBirthdayAlbum
 {
@@ -54,7 +50,7 @@ namespace NeteaseBirthdayAlbum
             client.DefaultRequestHeaders.Add("Referer", "http://music.163.com/discover/album");
             client.DefaultRequestHeaders.Add("Origin", "http://music.163.com");
             client.DefaultRequestHeaders.Add("Host", "music.163.com");
-            client.DefaultRequestHeaders.Add("Accept", "");
+            client.DefaultRequestHeaders.Add("Accept", "*/*");
             client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
             client.DefaultRequestHeaders.Add("Accept-Language", "zh-CN,zh;q=0.8");
 
