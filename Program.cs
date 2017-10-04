@@ -153,7 +153,7 @@ namespace NeteaseBirthdayAlbum
                     onFailed?.Invoke(Index);
                     Console.WriteLine("Failed to read page " + Index + "  " + result);
                 }
-                token.WaitHandle.WaitOne(150);
+                token.WaitHandle.WaitOne(90);
                 if (token.IsCancellationRequested)
                     break;
             }
